@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Community from '@/views/Community/index2.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/leyuan'),
   routes: [
     {
       path: '/home',
