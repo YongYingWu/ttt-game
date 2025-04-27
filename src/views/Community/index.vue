@@ -1,9 +1,9 @@
 <template>
   <div class="app">
     <div class="container" ref="fContainerRef">
-      <FsBookVirtualWaterfall2 :request="getData" :gap="15" :page-size="20" :column="column" :enter-size="column * 2">
+      <VisualWaterfall :request="getData" :gap="15" :page-size="20" :column="column" :enter-size="column * 2">
         <template #item="{ item, imageHeight }">
-          <fs-book-card
+          <Card
             @click="cardClick(item)"
             :detail="{
               imageHeight,
@@ -16,7 +16,7 @@
             }"
           />
         </template>
-      </FsBookVirtualWaterfall2>
+      </VisualWaterfall>
     </div>
     <transition-group>
       <VideoComponent v-if="showVideo" v-model="showVideo" :videoUrl="videoUrl" />
@@ -26,12 +26,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, onBeforeMount } from "vue";
-import { Dialog, showDialog } from 'vant';
-import { useRoute, useRouter } from "vue-router";
-import FsBookCard from "@/components/Test/Card.vue";
-import FsBookVirtualWaterfall2 from "@/components/Test/Waterfall.vue";
-import type { ICardItem } from "@/components/Test/type";
-import {list1, list2} from "@/config/index.ts";
+import { showDialog } from 'vant';
+import { useRoute } from "vue-router";
+import Card from "@/components/Card/index.vue";
+import VisualWaterfall from "@/components/Waterfall/index.vue";
+import type { ICardItem } from "@/components/Waterfall/type";
+import {list1, list2} from "@/config/index";
 import VideoComponent from '@/components/VideoComponent/index.vue'
 
 const fContainerRef = ref<HTMLDivElement | null>(null);
@@ -54,8 +54,7 @@ const changeColumn = (width: number) => {
 };
 
 
-const list = ref<any[]>([])
-const router = useRouter()
+const list = ref<ICardItem>([])
 onBeforeMount(() => {
   console.log(useRoute())
   const query = useRoute().query;

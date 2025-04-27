@@ -1,18 +1,19 @@
 <template>
-  <div class="fs-virtual-waterfall-container" ref="containerRef" @scroll="handleScroll">
+  <div class="virtual-waterfall-container" ref="containerRef" @scroll="handleScroll">
       <PullRefresh v-model="refreshing" @refresh="onRefresh">
-        <div class="fs-virtual-waterfall-list" :style="listStyle">
-          <div
-            v-if="isShow"
-            class="fs-virtual-waterfall-item"
-            v-for="{ item, style, imageHeight } in renderList"
-            :key="item.id"
-            :style="style"
-          >
-            <slot name="item" :item="item" :imageHeight="imageHeight"></slot>
-          </div>
+        <div class="virtual-waterfall-list" :style="listStyle">
+          <template v-if="isShow">
+            <div
+              class="virtual-waterfall-item"
+              v-for="{ item, style, imageHeight } in renderList"
+              :key="item.id"
+              :style="style"
+            >
+              <slot name="item" :item="item" :imageHeight="imageHeight"></slot>
+            </div>
+          </template>
           <div id="temporary-list" v-else>
-            <div v-for="{ item, style, imageHeight } in temporaryList" :style="style">
+            <div v-for="{ item, style, imageHeight } in temporaryList" :key="item.id" :style="style">
               <slot name="item" :item="item" :imageHeight="imageHeight"></slot>
             </div>
           </div>
@@ -264,7 +265,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-.fs-virtual-waterfall {
+.virtual-waterfall {
   &-container {
     width: 100%;
     height: 100%;

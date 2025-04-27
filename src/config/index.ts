@@ -1,4 +1,4 @@
-import type { ICardItem } from '@/components/Test/type'
+import type { ICardItem } from '@/components/Waterfall/type'
 import data1 from './data1.json'
 import data2 from './data2.json'
 

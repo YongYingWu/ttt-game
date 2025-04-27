@@ -1,6 +1,6 @@
 <template>
-  <div class="fs-book-card-container" style="display: flex; flex-direction: column;gap: 6px;">
-    <div class="fs-book-card-image">
+  <div class="book-card-container" style="display: flex; flex-direction: column;gap: 6px;">
+    <div class="book-card-image">
       <!-- srcset根据实际情况来 -->
       <Image
         class="img"
@@ -9,12 +9,12 @@
         :src="props.detail.bg"
         alt="">
         <template v-slot:loading>
-          <Loading type="spinner" size="20" />
+           <Loading type="spinner" size="20" />
         </template>
       </Image>
       <img v-if="props.detail.type === 'video'" class="video" src="@/assets/imgs/bofang.svg" alt="" height="15" width="15">
     </div>
-    <div class="fs-book-card-footer">
+    <div class="book-card-footer">
       <div class="title">{{ props.detail.title }}</div>
       <div class="game">{{ props.detail.game }}</div>
       <div class="author">
@@ -90,7 +90,7 @@ onMounted(() => {
   top: 5px;
   z-index: 999;
 }
-.fs-book-card {
+.book-card {
   &-container {
     width: 100%;
     height: 100%;

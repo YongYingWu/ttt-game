@@ -29,9 +29,10 @@
 <script setup lang="ts">
 import { ref, nextTick, watch } from 'vue'
 import { Popup } from 'vant'
-const props = defineProps({
-  videoUrl: String
-})
+type Props = {
+  videoUrl: string
+}
+const props = defineProps<Props>()
 const modelValue = defineModel('modelValue', { type: Boolean })
 const $emit = defineEmits(['closePopup'])
 const myVideo = ref<HTMLVideoElement | null>(null)
